@@ -26,8 +26,12 @@ This Repository includes the frontend,backend implementation for a search query.
 **Benchmarking**
 
 Latency Info - 
+
 Present Name - Min - 2, Max - 108, Avg - 8.158878504672897, P95 - 28.399999999999977
+
 Present Phone - Min - 1, Max - 20, Avg - 4.313725490196078, P95 - 8.0
+
 Random Phone - Min - 1, Max - 16, Avg - 2.41, P95 - 6.249999999999986
+
 Random Name - Min - 1, Max - 48, Avg - 5.64, P95 - 18.299999999999983
 
