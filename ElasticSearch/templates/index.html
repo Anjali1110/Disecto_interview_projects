@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<div class="s006">
+		<form action="http://127.0.0.1:8000/" method="post">
+			<input type="text" class="searchTerm" name="searchTerm"  placeholder="What are you looking for?">
+			<input type="submit" value="Submit">
+		</form>
+
+		{% if hits %}
+		<hgroup class="mb20">
+			<h1>Search Results</h1>
+			<h2 class="lead" id="results"><strong class="text-danger">{{ num_results }}</strong> results were found for the search for <strong class="text-danger">{{  query  }}</strong></h2>
+			<h2 class="lead" id="results"> About <strong class="text-danger">({{  time  }}ms)</strong></h2>
+		</hgroup>
+		<h4><span>Tags: </span><ul id="tags" style="display: inline-block"></ul></h4>
+
+		<section id='data_section' class="col-md-8">
+			{% for hit in hits %}
+			<article class="search-result row">
+				<div class="col-md-12">
+					<!-- <h3><a href="#" title="">{{ hit._source }}</a></h3> -->
+                    <p style="white-space: pre-line">{{ hit._source }}</p>
+					<ul class="meta-search">
+						<li><i class="glyphicon glyphicon-tags"></i> <span>Name: {{ hit._source.Name  }} </span></li>
+						<li><i class="glyphicon glyphicon-tags"></i> <span>Address: {{ hit._source.Address  }} </span></li>
+						<li><i class="glyphicon glyphicon-tags"></i> <span>Date: {{ hit._source.Date }}</span></li>
+						<li><i class="glyphicon glyphicon-tags"></i> <span>Number: {{ hit._source.Number }}</span></li>
+						<li><i class="glyphicon glyphicon-tags"></i> <span>Circle: {{ hit._source.Circle  }} </span></li>
+						<li><i class="glyphicon glyphicon-tags"></i> <span>Operator: {{ hit._source.Operator  }} </span></li>
+					</ul>
+				</div>
+				<div class="col-md-6">
+
+				</div>
+				<span class="clearfix borda"></span>
+			</article>
+			{% endfor %}
+		</section>
+		
+
+		{% else %}
+			{% if init %}
+				<hgroup class="mb20">
+				<h1> Search Engine</h1>
+				<h2 class="lead">Please enter the search query in the box</strong></h2>
+			</hgroup>
+			{% else %}
+			<hgroup class="mb20">
+				<h1>Search Results</h1>
+                <h2 class="lead" id="results"> About <strong class="text-danger">({{  time  }}ms)</strong></h2>
+				<h2 class="lead"><strong class="text-danger">0</strong> results were found for the search for <strong class="text-danger">{{  query  }}</strong></h2>
+			</hgroup>
+			{% endif %}
+		{% endif %}
+	</div>
+</body>
+</html>
+
+
+
+
+<!-- <body>
+    <form class="d-flex" role="search" action="/" method="post">
+        <input name="q" id="q" value="{{q}}" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    {{response}}
+</body> -->
